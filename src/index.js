@@ -1,12 +1,24 @@
+import { createStore, bindActionCreators } from 'redux';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import reducer from './reducer';
+import App from './components/app';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore(reducer);
+
+// const bindActionCreator = (creator, dispatch) => (...args) => {
+//     dispatch(creator(...args));
+// }
+
+
+ReactDom.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+    , document.getElementById('root'));
+
+
+
+
